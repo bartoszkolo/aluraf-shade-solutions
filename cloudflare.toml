@@ -1,7 +1,8 @@
 [build]
-command = "npm install && npm run build"
+command = "npm ci && npm run build"
 publish = "dist"
 
 [build.environment]
 NODE_VERSION = "18"
-NPM_VERSION = "9" 
+NPM_VERSION = "9"
+BUN_VERSION = "0" 
