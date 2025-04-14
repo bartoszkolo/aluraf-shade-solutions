@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 const NavBar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -40,27 +40,33 @@ const NavBar = () => {
               O Nas
             </Link>
             
-            {/* Dropdown menu */}
+            {/* Oferta dropdown menu */}
             <div className="relative group">
               <button 
                 className="navbar-link flex items-center"
                 onMouseEnter={() => setDropdownOpen(true)}
                 onMouseLeave={() => setDropdownOpen(false)}
               >
-                Zadaszenia Tarasowe
+                Oferta <ChevronDown className="ml-1 h-4 w-4" />
               </button>
               <div 
-                className={`absolute ${dropdownOpen ? 'block' : 'hidden'} group-hover:block bg-black shadow-lg rounded-md mt-2 z-10 min-w-[200px]`}
+                className={`absolute ${dropdownOpen ? 'block' : 'hidden'} group-hover:block bg-black shadow-lg rounded-md mt-2 z-10 min-w-[250px]`}
                 onMouseEnter={() => setDropdownOpen(true)}
                 onMouseLeave={() => setDropdownOpen(false)}
               >
-                <Link to="/pergole-lamelowe" className="dropdown-link">Pergole Lamelowe</Link>
-                <Link to="/zadaszenia" className="dropdown-link">Nowoczesne Zadaszenia</Link>
+                <Link to="/zadaszenia-tarasu" className="dropdown-link">Zadaszenia tarasu</Link>
+                <Link to="/przeszklenia" className="dropdown-link">Przeszklenia</Link>
+                <Link to="/carporty" className="dropdown-link">Wiaty samochodowe/Carporty</Link>
+                <Link to="/wiatrolapy" className="dropdown-link">Wiatrołapy</Link>
+                <Link to="/pergole-lamelowe" className="dropdown-link">Pergole lamelowe</Link>
+                <Link to="/ruchome-lamele" className="dropdown-link">Ruchome lamele (drewno, aluminiowe)</Link>
+                <Link to="/rolety-zip" className="dropdown-link">Rolety zip</Link>
+                <Link to="/markizy" className="dropdown-link">Markizy</Link>
               </div>
             </div>
             
-            <Link to="/carporty" className={isActive('/carporty') ? "navbar-link-active" : "navbar-link"}>
-              Carporty
+            <Link to="/porady" className={isActive('/porady') ? "navbar-link-active" : "navbar-link"}>
+              Porady
             </Link>
             <Link to="/kontakt" className={isActive('/kontakt') ? "navbar-link-active" : "navbar-link"}>
               Kontakt
@@ -94,20 +100,26 @@ const NavBar = () => {
             </Link>
             <div className="py-2">
               <button 
-                className="navbar-link w-full text-left"
+                className="navbar-link w-full text-left flex items-center"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
-                Zadaszenia Tarasowe
+                Oferta <ChevronDown className="ml-1 h-4 w-4" />
               </button>
               {dropdownOpen && (
                 <div className="pl-4 space-y-2 mt-2">
-                  <Link to="/pergole-lamelowe" className="dropdown-link block">Pergole Lamelowe</Link>
-                  <Link to="/zadaszenia" className="dropdown-link block">Nowoczesne Zadaszenia</Link>
+                  <Link to="/zadaszenia-tarasu" className="dropdown-link block">Zadaszenia tarasu</Link>
+                  <Link to="/przeszklenia" className="dropdown-link block">Przeszklenia</Link>
+                  <Link to="/carporty" className="dropdown-link block">Wiaty samochodowe/Carporty</Link>
+                  <Link to="/wiatrolapy" className="dropdown-link block">Wiatrołapy</Link>
+                  <Link to="/pergole-lamelowe" className="dropdown-link block">Pergole lamelowe</Link>
+                  <Link to="/ruchome-lamele" className="dropdown-link block">Ruchome lamele (drewno, aluminiowe)</Link>
+                  <Link to="/rolety-zip" className="dropdown-link block">Rolety zip</Link>
+                  <Link to="/markizy" className="dropdown-link block">Markizy</Link>
                 </div>
               )}
             </div>
-            <Link to="/carporty" className={isActive('/carporty') ? "navbar-link-active block" : "navbar-link block"}>
-              Carporty
+            <Link to="/porady" className={isActive('/porady') ? "navbar-link-active block" : "navbar-link block"}>
+              Porady
             </Link>
             <Link to="/kontakt" className={isActive('/kontakt') ? "navbar-link-active block" : "navbar-link block"}>
               Kontakt
