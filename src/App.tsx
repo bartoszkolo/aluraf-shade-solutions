@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ONas from "./pages/ONas";
 import Kontakt from "./pages/Kontakt";
+import Wycena from "./pages/Wycena";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,11 +22,11 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/o-nas" element={<ONas />} />
           <Route path="/kontakt" element={<Kontakt />} />
+          <Route path="/wycena" element={<Wycena />} />
           {/* These routes will be implemented in future updates */}
           <Route path="/pergole-lamelowe" element={<NotFound />} />
           <Route path="/zadaszenia" element={<NotFound />} />
           <Route path="/carporty" element={<NotFound />} />
-          <Route path="/wycena" element={<NotFound />} />
           <Route path="/realizacje" element={<NotFound />} />
           <Route path="/polityka-prywatnosci" element={<NotFound />} />
           <Route path="/jak-dojechac" element={<NotFound />} />
