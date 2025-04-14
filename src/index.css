@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 0 95% 47%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -33,69 +36,66 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  .hero-overlay {
+    @apply absolute inset-0 bg-black bg-opacity-50;
+  }
+  
+  .feature-icon {
+    @apply bg-aluraf-red/10 rounded-full p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center text-aluraf-red;
+  }
+  
+  .product-card-overlay {
+    @apply absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300;
+  }
+  
+  .product-card-image {
+    @apply w-full h-full object-cover group-hover:scale-110 transition-transform duration-500;
+  }
+
+  .testimonial-card {
+    @apply bg-aluraf-red rounded-lg p-8 text-white shadow-lg hover:bg-aluraf-red/90 transition-colors;
+  }
+  
+  .navbar-link {
+    @apply text-white hover:text-aluraf-red px-3 py-2 rounded-md text-lg font-medium transition-colors;
+  }
+  
+  .navbar-link-active {
+    @apply text-aluraf-red hover:text-aluraf-red px-3 py-2 rounded-md text-lg font-medium;
+  }
+  
+  .dropdown-link {
+    @apply block px-4 py-2 text-white hover:text-aluraf-red text-lg transition-colors;
+  }
+
+  .contact-number {
+    @apply text-4xl md:text-5xl font-bold text-gray-900 hover:text-aluraf-red transition-colors;
+  }
+  
+  .footer-link {
+    @apply text-gray-400 hover:text-aluraf-red transition-colors;
+  }
+  
+  .footer-section-title {
+    @apply text-lg font-semibold mb-4;
+  }
+
+  .cta-button {
+    @apply bg-aluraf-red text-white px-6 py-3 rounded-md hover:bg-aluraf-red/90 transition-colors text-lg font-medium;
+  }
+
+  .secondary-button {
+    @apply bg-transparent border-2 border-white text-white px-6 py-3 rounded-md hover:bg-white hover:text-black transition-colors text-lg font-medium;
   }
 }
