@@ -1,171 +1,134 @@
-
 import React from 'react';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import { Link, useParams } from 'react-router-dom';
-
-interface BlogPost {
-  id: string;
-  category: string;
-  title: string;
-  content: React.ReactNode;
-  image: string;
-  date: string;
-  readTime: string;
-}
-
-const blogPosts: Record<string, BlogPost> = {
-  '1': {
-    id: '1',
-    category: 'TRENDY 2024',
-    title: 'Pergole Bioklimatyczne - Przyszłość Architektury Ogrodowej',
-    content: (
-      <>
-        <p className="text-xl text-gray-600 mb-8">
-          Pergole bioklimatyczne to innowacyjne rozwiązanie, które rewolucjonizuje sposób, w jaki korzystamy z przestrzeni ogrodowej. W tym artykule przyjrzymy się najnowszym trendom i rozwiązaniom technicznym, które sprawiają, że pergole stają się nieodzownym elementem nowoczesnej architektury.
-        </p>
-
-        <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">Co to jest pergola bioklimatyczna?</h2>
-        <p className="text-gray-600 mb-8">
-          Pergola bioklimatyczna to zaawansowane technologicznie zadaszenie tarasu, które pozwala na pełną kontrolę nad warunkami atmosferycznymi w strefie wypoczynkowej. Głównym elementem są obrotowe lamele, które można dostosować do aktualnych potrzeb i warunków pogodowych.
-        </p>
-
-        <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">Kluczowe zalety pergoli bioklimatycznych</h2>
-        <ul className="list-disc list-inside text-gray-600 mb-8 space-y-4">
-          <li>Regulacja nasłonecznienia i wentylacji</li>
-          <li>Ochrona przed deszczem i wiatrem</li>
-          <li>Możliwość integracji z systemami smart home</li>
-          <li>Energooszczędność i ekologiczne rozwiązania</li>
-          <li>Elegancki, nowoczesny design</li>
-        </ul>
-
-        <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">Innowacyjne funkcje</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Automatyka pogodowa</h3>
-            <p className="text-gray-600">
-              Czujniki deszczu, wiatru i temperatury automatycznie dostosowują ustawienia pergoli do warunków atmosferycznych.
-            </p>
-          </div>
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Oświetlenie LED</h3>
-            <p className="text-gray-600">
-              Zintegrowane oświetlenie LED tworzy nastrojową atmosferę i umożliwia korzystanie z tarasu po zmroku.
-            </p>
-          </div>
-        </div>
-
-        <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">Podsumowanie</h2>
-        <p className="text-gray-600 mb-12">
-          Pergole bioklimatyczne to przyszłość architektury ogrodowej. Łączą w sobie nowoczesny design, zaawansowaną technologię i praktyczne rozwiązania, które sprawiają, że taras staje się dodatkowym, funkcjonalnym pomieszczeniem domu.
-        </p>
-      </>
-    ),
-    image: 'https://images.unsplash.com/photo-1609349093648-53df455ea814?q=80',
-    date: '15 Marca 2024',
-    readTime: '5 min'
-  }
-};
+import { getPostBySlug, formatPostDate, getAllPosts } from '@/lib/blog';
+import { animations } from '@/lib/animations';
+import { BackToTop } from '@/components/ui/back-to-top';
 
 const BlogPost = () => {
-  const { id } = useParams();
-  const post = id ? blogPosts[id] : undefined;
-
+  const { slug } = useParams<{ slug: string }>();
+  const post = slug ? getPostBySlug(slug) : undefined;
+  
   if (!post) {
-    return (
-      <Layout>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">Post nie znaleziony</h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Przepraszamy, nie mogliśmy znaleźć żądanego artykułu.
-          </p>
-          <Link to="/porady" className="text-red-600 font-medium hover:text-red-700">
-            Wróć do bloga →
-          </Link>
-        </div>
-      </Layout>
-    );
+    return <Navigate to="/blog" replace />;
   }
+  
+  // Get related posts (posts with at least one matching category)
+  const relatedPosts = getAllPosts()
+    .filter(p => 
+      p.id !== post.id && 
+      p.categories.some(cat => post.categories.includes(cat))
+    )
+    .slice(0, 3);
 
   return (
     <Layout>
-      {/* Article Header */}
-      <div className="bg-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-red-600 text-sm font-semibold mb-4">{post.category}</div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            {post.title}
-          </h1>
-          <div className="flex items-center text-gray-600 mb-8">
-            <span className="mr-4">{post.date}</span>
-            <span className="mr-4">•</span>
-            <span>Czas czytania: {post.readTime}</span>
-          </div>
-          <img src={post.image} alt={post.title} className="w-full h-96 object-cover rounded-lg shadow-lg mb-8" />
+      {/* Featured Image */}
+      <div className="relative h-[500px]">
+        <div className="absolute inset-0">
+          <img 
+            src={post.featuredImage} 
+            alt={post.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30"></div>
         </div>
-      </div>
-
-      {/* Article Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <article className="prose lg:prose-xl">
-          {post.content}
-
-          {/* Call to Action */}
-          <div className="bg-gray-900 text-white p-8 rounded-lg text-center mt-12">
-            <h3 className="text-2xl font-bold mb-4">Zainteresowany pergolą bioklimatyczną?</h3>
-            <p className="mb-6">Skontaktuj się z nami, aby otrzymać bezpłatną wycenę i konsultację</p>
-            <Link to="/wycena" className="inline-block bg-red-600 text-white px-8 py-3 rounded-md hover:bg-red-700 transition-colors text-lg font-medium">
-              Otrzymaj wycenę
-            </Link>
-          </div>
-        </article>
-
-        {/* Share Buttons */}
-        <div className="border-t border-gray-200 mt-12 pt-8">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Udostępnij artykuł</h3>
-          <div className="flex space-x-4">
-            <a href="#" className="text-gray-400 hover:text-red-600">
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
-              </svg>
-            </a>
+        <div className="relative h-full flex flex-col items-center justify-end text-center px-4 pb-16">
+          <div className="max-w-3xl">
+            <div className="flex flex-wrap justify-center gap-2 mb-4">
+              {post.categories.map((category) => (
+                <Link 
+                  key={category}
+                  to={`/blog?category=${category}`}
+                  className="bg-white/20 backdrop-blur-sm text-white text-sm px-4 py-1 rounded-full hover:bg-white/30 transition-colors"
+                >
+                  {category}
+                </Link>
+              ))}
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
+              {post.title}
+            </h1>
+            <p className="text-white/80 text-lg">
+              {formatPostDate(post.date)} | {post.author}
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Related Articles */}
-      <div className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Podobne artykuły</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <article className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1609349093648-53df455ea814?q=80" alt="Oświetlenie LED" className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <div className="text-red-600 text-sm font-semibold mb-2">DESIGN</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Magia Światła - Oświetlenie LED w Pergolach</h3>
-                <Link to="/porady/3" className="text-red-600 font-medium hover:text-red-700">Czytaj więcej →</Link>
-              </div>
-            </article>
-
-            <article className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1609349093648-53df455ea814?q=80" alt="Inteligentne Sterowanie" className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <div className="text-red-600 text-sm font-semibold mb-2">TECHNOLOGIA</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Inteligentne Sterowanie Zadaszeniem</h3>
-                <Link to="/porady/2" className="text-red-600 font-medium hover:text-red-700">Czytaj więcej →</Link>
-              </div>
-            </article>
-
-            <article className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1609349093648-53df455ea814?q=80" alt="Przeszklenia" className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <div className="text-red-600 text-sm font-semibold mb-2">PORADY</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Przeszklenia w Pergolach</h3>
-                <Link to="/porady/4" className="text-red-600 font-medium hover:text-red-700">Czytaj więcej →</Link>
+      {/* Blog Content */}
+      <div className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-3">
+            <article className="bg-white rounded-lg shadow-md p-6 md:p-8">
+              <div 
+                className="prose prose-lg max-w-none"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
+              
+              <div className="mt-12 pt-8 border-t">
+                <div className="flex flex-wrap gap-2">
+                  {post.categories.map((category) => (
+                    <Link 
+                      key={category}
+                      to={`/blog?category=${category}`}
+                      className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full hover:bg-gray-200 transition-colors"
+                    >
+                      {category}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </article>
           </div>
+          
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-lg shadow-md p-6 sticky top-24">
+              <h3 className="text-xl font-bold mb-4">Powiązane artykuły</h3>
+              
+              {relatedPosts.length > 0 ? (
+                <div className="space-y-6">
+                  {relatedPosts.map((relatedPost) => (
+                    <div key={relatedPost.id} className={`group ${animations.card}`}>
+                      <Link to={`/blog/${relatedPost.slug}`} className="block">
+                        <img 
+                          src={relatedPost.image} 
+                          alt={relatedPost.title}
+                          className="w-full h-32 object-cover rounded-md mb-2"
+                        />
+                        <h4 className="font-semibold group-hover:text-aluraf-red transition-colors">
+                          {relatedPost.title}
+                        </h4>
+                        <p className="text-sm text-gray-500">
+                          {formatPostDate(relatedPost.date)}
+                        </p>
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-gray-600">Brak powiązanych artykułów.</p>
+              )}
+              
+              <div className="mt-8 pt-6 border-t">
+                <Link 
+                  to="/blog"
+                  className="inline-flex items-center text-aluraf-red hover:underline"
+                >
+                  <svg className="w-4 h-4 mr-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                  Wróć do listy artykułów
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      
+      <BackToTop />
     </Layout>
   );
 };

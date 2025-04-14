@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +10,8 @@ import Wycena from "./pages/Wycena";
 import Porady from "./pages/Porady";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
+import Blog from './pages/Blog';
+import Realizacje from './pages/Realizacje';
 
 const queryClient = new QueryClient();
 
@@ -38,11 +39,13 @@ const App = () => (
           <Route path="/rolety-zip" element={<NotFound />} />
           <Route path="/markizy" element={<NotFound />} />
           
-          {/* Additional routes that will be implemented in future updates */}
-          <Route path="/realizacje" element={<NotFound />} />
+          {/* Additional routes */}
+          <Route path="/realizacje" element={<Realizacje />} />
           <Route path="/polityka-prywatnosci" element={<NotFound />} />
           <Route path="/jak-dojechac" element={<NotFound />} />
           <Route path="/rezerwacja" element={<NotFound />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

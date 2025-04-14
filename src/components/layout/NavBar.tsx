@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -68,6 +67,9 @@ const NavBar = () => {
             <Link to="/porady" className={isActive('/porady') ? "navbar-link-active" : "navbar-link"}>
               Porady
             </Link>
+            <Link to="/realizacje" className={isActive('/realizacje') ? "navbar-link-active" : "navbar-link"}>
+              Realizacje
+            </Link>
             <Link to="/kontakt" className={isActive('/kontakt') ? "navbar-link-active" : "navbar-link"}>
               Kontakt
             </Link>
@@ -120,6 +122,9 @@ const NavBar = () => {
             </div>
             <Link to="/porady" className={isActive('/porady') ? "navbar-link-active block" : "navbar-link block"}>
               Porady
+            </Link>
+            <Link to="/realizacje" className={isActive('/realizacje') ? "navbar-link-active block" : "navbar-link block"}>
+              Realizacje
             </Link>
             <Link to="/kontakt" className={isActive('/kontakt') ? "navbar-link-active block" : "navbar-link block"}>
               Kontakt
