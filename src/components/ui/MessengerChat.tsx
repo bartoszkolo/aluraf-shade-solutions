@@ -58,7 +58,7 @@ const MessengerChat = () => {
         <a href="https://m.me/aluminiowezadaszeniatarasow" 
            target="_blank" 
            rel="noopener noreferrer" 
-           className="flex items-center justify-center w-16 h-16 bg-blue-500 rounded-full shadow-lg hover:bg-blue-600 transition-colors duration-300">
+           className="flex items-center justify-center w-16 h-16 bg-aluraf-red rounded-full shadow-lg hover:bg-aluraf-red/90 transition-colors duration-300">
             <MessageCircle className="w-8 h-8 text-white" />
         </a>
       </div>
