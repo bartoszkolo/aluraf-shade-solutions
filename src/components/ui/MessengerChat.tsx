@@ -2,11 +2,21 @@
 import React, { useEffect } from 'react';
 import { MessageCircle } from 'lucide-react';
 
+// Define the FB interface to fix TypeScript errors
+declare global {
+  interface Window {
+    fbAsyncInit: () => void;
+    FB: {
+      init: (config: { xfbml: boolean; version: string }) => void;
+    };
+  }
+}
+
 const MessengerChat = () => {
   useEffect(() => {
     // Load Facebook SDK
     window.fbAsyncInit = function() {
-      FB.init({
+      window.FB.init({
         xfbml: true,
         version: 'v18.0'
       });
