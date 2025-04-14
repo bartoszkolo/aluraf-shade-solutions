@@ -53,14 +53,14 @@ const NavBar = () => {
                 onMouseEnter={() => setDropdownOpen(true)}
                 onMouseLeave={() => setDropdownOpen(false)}
               >
-                <Link to="/zadaszenia-tarasu" className="dropdown-link">Zadaszenia tarasu</Link>
-                <Link to="/przeszklenia" className="dropdown-link">Przeszklenia</Link>
-                <Link to="/carporty" className="dropdown-link">Wiaty samochodowe/Carporty</Link>
-                <Link to="/wiatrolapy" className="dropdown-link">Wiatrołapy</Link>
-                <Link to="/pergole-lamelowe" className="dropdown-link">Pergole lamelowe</Link>
-                <Link to="/ruchome-lamele" className="dropdown-link">Ruchome lamele (drewno, aluminiowe)</Link>
-                <Link to="/rolety-zip" className="dropdown-link">Rolety zip</Link>
-                <Link to="/markizy" className="dropdown-link">Markizy</Link>
+                <Link to="/oferta/zadaszenia-tarasu" className="dropdown-link">Zadaszenia tarasu</Link>
+                <Link to="/oferta/przeszklenia" className="dropdown-link">Przeszklenia</Link>
+                <Link to="/oferta/carporty" className="dropdown-link">Wiaty samochodowe/Carporty</Link>
+                <Link to="/oferta/wiatrolapy" className="dropdown-link">Wiatrołapy</Link>
+                <Link to="/oferta/pergole-lamelowe" className="dropdown-link">Pergole lamelowe</Link>
+                <Link to="/oferta/ruchome-lamele" className="dropdown-link">Ruchome lamele</Link>
+                <Link to="/oferta/rolety-zip" className="dropdown-link">Rolety zip</Link>
+                <Link to="/oferta/markizy" className="dropdown-link">Markizy</Link>
               </div>
             </div>
             
@@ -109,14 +109,14 @@ const NavBar = () => {
               </button>
               {dropdownOpen && (
                 <div className="pl-4 space-y-2 mt-2">
-                  <Link to="/zadaszenia-tarasu" className="dropdown-link block">Zadaszenia tarasu</Link>
-                  <Link to="/przeszklenia" className="dropdown-link block">Przeszklenia</Link>
-                  <Link to="/carporty" className="dropdown-link block">Wiaty samochodowe/Carporty</Link>
-                  <Link to="/wiatrolapy" className="dropdown-link block">Wiatrołapy</Link>
-                  <Link to="/pergole-lamelowe" className="dropdown-link block">Pergole lamelowe</Link>
-                  <Link to="/ruchome-lamele" className="dropdown-link block">Ruchome lamele (drewno, aluminiowe)</Link>
-                  <Link to="/rolety-zip" className="dropdown-link block">Rolety zip</Link>
-                  <Link to="/markizy" className="dropdown-link block">Markizy</Link>
+                  <Link to="/oferta/zadaszenia-tarasu" className="dropdown-link block">Zadaszenia tarasu</Link>
+                  <Link to="/oferta/przeszklenia" className="dropdown-link block">Przeszklenia</Link>
+                  <Link to="/oferta/carporty" className="dropdown-link block">Wiaty samochodowe/Carporty</Link>
+                  <Link to="/oferta/wiatrolapy" className="dropdown-link block">Wiatrołapy</Link>
+                  <Link to="/oferta/pergole-lamelowe" className="dropdown-link block">Pergole lamelowe</Link>
+                  <Link to="/oferta/ruchome-lamele" className="dropdown-link block">Ruchome lamele</Link>
+                  <Link to="/oferta/rolety-zip" className="dropdown-link block">Rolety zip</Link>
+                  <Link to="/oferta/markizy" className="dropdown-link block">Markizy</Link>
                 </div>
               )}
             </div>

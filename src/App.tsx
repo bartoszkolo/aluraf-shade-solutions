@@ -12,6 +12,7 @@ import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import Blog from './pages/Blog';
 import Realizacje from './pages/Realizacje';
+import ProductPage from './pages/ProductPage';
 
 const queryClient = new QueryClient();
 
@@ -29,15 +30,8 @@ const App = () => (
           <Route path="/porady" element={<Porady />} />
           <Route path="/porady/:id" element={<BlogPost />} />
           
-          {/* Oferta routes */}
-          <Route path="/zadaszenia-tarasu" element={<NotFound />} />
-          <Route path="/przeszklenia" element={<NotFound />} />
-          <Route path="/pergole-lamelowe" element={<NotFound />} />
-          <Route path="/carporty" element={<NotFound />} />
-          <Route path="/wiatrolapy" element={<NotFound />} />
-          <Route path="/ruchome-lamele" element={<NotFound />} />
-          <Route path="/rolety-zip" element={<NotFound />} />
-          <Route path="/markizy" element={<NotFound />} />
+          {/* Oferta routes - Now handled by ProductPage */}
+          <Route path="/oferta/:slug" element={<ProductPage />} />
           
           {/* Additional routes */}
           <Route path="/realizacje" element={<Realizacje />} />

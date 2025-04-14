@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,7 +23,7 @@ const formSchema = z.object({
   głębokość: z.string().min(1, { message: "Głębokość jest wymagana" }),
   wysokość: z.string().min(1, { message: "Wysokość jest wymagana" }),
   zadaszenie: z.enum(["poliwęglan mleczny", "poliwęglan transparentny", "szyba laminowana 442"]),
-  kolor: z.enum(["antracyt RAL 7016ST", "szary RAL 9007ST", "biały RAL 9016", "czarny RAL 9005"]),
+  kolor: z.enum(["antracyt RAL 7016ST #353942", "szary RAL 9007ST #909090", "biały RAL 9016 #f9f9f9", "czarny RAL 9005 #030303"]),
   oświetlenieLED: z.enum(["tak", "nie"]),
   ścianyTarasu: z.enum(["bez zabudowy", "szyby przesuwne"]),
   lokalizacja: z.string().min(1, { message: "Lokalizacja jest wymagana" }),
@@ -46,7 +45,7 @@ const WycenaForm = () => {
       głębokość: "",
       wysokość: "",
       zadaszenie: "poliwęglan mleczny",
-      kolor: "antracyt RAL 7016ST",
+      kolor: "antracyt RAL 7016ST #353942",
       oświetlenieLED: "nie",
       ścianyTarasu: "bez zabudowy",
       lokalizacja: "",
@@ -181,10 +180,30 @@ const WycenaForm = () => {
                         <SelectValue placeholder="Wybierz kolor" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="antracyt RAL 7016ST">Antracyt RAL 7016ST</SelectItem>
-                        <SelectItem value="szary RAL 9007ST">Szary RAL 9007ST</SelectItem>
-                        <SelectItem value="biały RAL 9016">Biały RAL 9016</SelectItem>
-                        <SelectItem value="czarny RAL 9005">Czarny RAL 9005</SelectItem>
+                        <SelectItem value="antracyt RAL 7016ST #353942">
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#353942' }} />
+                            <span>Antracyt RAL 7016ST</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="szary RAL 9007ST #909090">
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#909090' }} />
+                            <span>Szary RAL 9007ST</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="biały RAL 9016 #f9f9f9">
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 rounded-full border border-gray-300" style={{ backgroundColor: '#f9f9f9' }} />
+                            <span>Biały RAL 9016</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="czarny RAL 9005 #030303">
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#030303' }} />
+                            <span>Czarny RAL 9005</span>
+                          </div>
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </FormControl>
