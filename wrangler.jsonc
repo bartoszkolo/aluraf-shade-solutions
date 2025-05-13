@@ -1,7 +1,13 @@
+// wrangler.jsonc
 {
-  "name": "aluraf-shade-solutions",
-  "compatibility_date": "2024-05-13",
-  "assets": {
-    "directory": "./dist"
+  "name": "aluraf",
+  "compatibility_date": "2024-05-13", // Adjust to today's or your preferred date
+  "type": "javascript", // or "webpack" / "modules" depending on your project
+  "build": {
+    "command": "npm run build"
+  },
+  "site": {
+    "bucket": "./dist",
+    "entry-point": "./"
   }
-} 
+}
