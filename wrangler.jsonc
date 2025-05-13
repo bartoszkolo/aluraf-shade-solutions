@@ -9,5 +9,8 @@
   "site": {
     "bucket": "./dist",
     "entry-point": "./"
+  },
+  "assets": {
+    "directory": "./dist"
   }
 }
