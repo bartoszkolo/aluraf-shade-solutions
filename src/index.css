@@ -68,15 +68,15 @@
   }
   
   .navbar-link {
-    @apply text-white hover:text-aluraf-red px-3 py-2 rounded-md text-lg font-medium transition-colors;
+    @apply text-white hover:text-aluraf-red px-3 py-2 rounded-md text-sm font-medium transition-colors;
   }
-  
+
   .navbar-link-active {
-    @apply text-aluraf-red hover:text-aluraf-red px-3 py-2 rounded-md text-lg font-medium;
+    @apply text-aluraf-red hover:text-aluraf-red px-3 py-2 rounded-md text-sm font-medium;
   }
-  
+
   .dropdown-link {
-    @apply block px-4 py-2 text-white hover:text-aluraf-red text-lg transition-colors;
+    @apply block px-4 py-2 text-white hover:text-aluraf-red text-sm transition-colors;
   }
 
   .contact-number {
@@ -92,7 +92,7 @@
   }
 
   .cta-button {
-    @apply bg-aluraf-red text-white px-6 py-3 rounded-md hover:bg-aluraf-red/90 transition-colors text-lg font-medium;
+    @apply bg-aluraf-red text-white px-5 py-2 rounded-md hover:bg-aluraf-red/90 transition-colors text-sm font-semibold;
   }
 
   .secondary-button {
