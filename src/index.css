@@ -44,6 +44,7 @@
 
   body {
     @apply bg-background text-foreground;
+    font-size: 15px; /* Reduced from default 16px for more compact typography */
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
