@@ -4,6 +4,7 @@ import TopBar from './TopBar';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import MessengerChat from '../ui/MessengerChat';
+import CookieConsentBanner from '../CookieConsent';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </main>
       <Footer />
       <MessengerChat />
+      <CookieConsentBanner />
     </div>
   );
 };
