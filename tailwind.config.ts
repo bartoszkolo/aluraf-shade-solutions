@@ -73,6 +73,11 @@ export default {
 				'slide-in': 'slide-in 0.5s ease-out forwards',
 				'fade-in': 'fadeIn 0.5s ease-in-out',
 				'slide-up': 'slideUp 0.5s ease-out',
+				'fade-in-up': 'fadeInUp 0.7s ease-out forwards',
+				'scale-in': 'scaleIn 0.5s ease-out forwards',
+				'shimmer': 'shimmer 3s infinite',
+				'float': 'float 3s ease-in-out infinite',
+				'pulse-subtle': 'pulseSubtle 2s ease-in-out infinite',
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],

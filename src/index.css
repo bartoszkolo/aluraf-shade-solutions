@@ -98,4 +98,38 @@
   .secondary-button {
     @apply bg-transparent border-2 border-white text-white px-6 py-3 rounded-md hover:bg-white hover:text-black transition-colors text-lg font-medium;
   }
+
+  /* Premium Typography */
+  .heading-premium {
+    @apply font-display font-extrabold tracking-wide;
+    letter-spacing: 0.025em;
+  }
+
+  .heading-premium-lg {
+    @apply font-display font-extrabold tracking-wider;
+    letter-spacing: 0.05em;
+  }
+
+  .text-premium {
+    @apply font-sans font-medium tracking-normal;
+    line-height: 1.7;
+  }
+
+  /* Premium Button with arrow animation */
+  .premium-button {
+    @apply relative inline-flex items-center gap-2 px-8 py-4;
+    @apply bg-aluraf-red text-white font-display font-bold;
+    @apply rounded-md transition-all duration-300;
+    @apply hover:bg-red-700 hover:gap-4 hover:shadow-xl;
+    letter-spacing: 0.05em;
+  }
+
+  .premium-button-secondary {
+    @apply relative inline-flex items-center gap-2 px-8 py-4;
+    @apply bg-transparent border-2 border-white text-white;
+    @apply font-display font-bold rounded-md;
+    @apply transition-all duration-300;
+    @apply hover:bg-white hover:text-black hover:gap-4;
+    letter-spacing: 0.05em;
+  }
 }

@@ -5,6 +5,7 @@ import { CATEGORIES, GALLERY_ITEMS, GalleryItem } from '@/data/gallery';
 import { animations } from '@/lib/animations';
 import { BackToTop } from '@/components/ui/back-to-top';
 import { motion } from 'framer-motion';
+import HelmetWrapper from '../components/seo/HelmetWrapper';
 
 const Realizacje = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -55,6 +56,11 @@ const Realizacje = () => {
 
   return (
     <Layout>
+      <HelmetWrapper
+        title="Realizacje - Nasze Projekty | Aluraf Galeria"
+        description="Zobacz nasze realizacje pergoli, zadaszeń tarasowych i carportów. Galeria projektów z całej Polski. Inspiracje i pomysły."
+        keywords="realizacje, projekty, galeria, pergole, zadaszenia, portfolio"
+      />
       {/* Hero Section */}
       <div className="relative h-[500px]">
         <div className="absolute inset-0">

@@ -2,10 +2,16 @@ import React from 'react';
 import Layout from '../components/layout/Layout';
 import WycenaForm from '../components/wycena/WycenaForm';
 import { animations } from '@/lib/animations';
+import HelmetWrapper from '../components/seo/HelmetWrapper';
 
 const Wycena = () => {
   return (
     <Layout>
+      <HelmetWrapper
+        title="Bezpłatna Wycena - Zadaszenia Tarasowe | Aluraf"
+        description="Zamów bezpłatną wycenę zadaszenia tarasowego, pergoli lub carportu. Wypełnij formularz i otrzymaj indywidualną ofertę w 24h."
+        keywords="wycena, bezpłatna wycena, zadaszenie, pergola, carport, formularz wyceny"
+      />
       <div className="relative h-[500px]">
         <div className="absolute inset-0">
           <div 
