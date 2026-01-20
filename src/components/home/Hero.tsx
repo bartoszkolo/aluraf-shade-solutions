@@ -66,12 +66,12 @@ const Hero = () => {
         {slides.map((slide, index) => (
           <div key={index} className="relative h-screen w-full">
             {/* Background Image */}
-            <div 
+            <div
               className="absolute inset-0 w-full h-full bg-cover bg-center"
               style={{ backgroundImage: `url(${slide.image})` }}
             ></div>
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black bg-opacity-40"></div> {/* Adjusted opacity */}
+            {/* Premium Gradient Overlay */}
+            <div className="gradient-overlay-hero"></div>
             
             {/* Content */}
             <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-4 z-10">

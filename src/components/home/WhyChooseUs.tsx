@@ -40,7 +40,7 @@ const WhyChooseUs = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {reasons.map((reason) => (
-            <div key={reason.id} className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <div key={reason.id} className="stat-card">
               <div className="text-aluraf-red mb-4 flex justify-center">
                 {reason.icon}
               </div>

@@ -87,8 +87,8 @@ const Porady = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post) => (
-            <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <img src={post.image} alt={post.title} className="w-full h-64 object-cover" />
+            <article key={post.id} className="premium-card premium-card-glow overflow-hidden hover:shadow-xl transition-shadow">
+              <img src={post.image} alt={post.title} className="w-full h-64 object-cover" loading="lazy" />
               <div className="p-6">
                 <div className="text-red-600 text-sm font-semibold mb-2">{post.category}</div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-3">{post.title}</h2>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -14,6 +14,8 @@ import Step1Dimensions from './steps/Step1Dimensions';
 import Step2Options from './steps/Step2Options';
 import Step3Contact from './steps/Step3Contact';
 import Step4Summary from './steps/Step4Summary';
+import { initEmailJS, EMAILJS_CONFIG } from '@/lib/emailjs';
+import emailjs from '@emailjs/browser';
 
 const formSchema = z.object({
   szerokość: z.string().min(1, { message: "Szerokość jest wymagana" }),
@@ -47,7 +49,39 @@ const STEPS: Step[] = [
 const WizardForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<Partial<FormValues>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  // Initialize EmailJS
+  useEffect(() => {
+    initEmailJS();
+  }, []);
+
+  // Load saved progress from localStorage
+  useEffect(() => {
+    const savedProgress = localStorage.getItem('wizardProgress');
+    if (savedProgress) {
+      try {
+        const parsed = JSON.parse(savedProgress);
+        setFormData(parsed);
+        // Restore form values
+        Object.keys(parsed).forEach(key => {
+          if (key in formSchema.shape) {
+            form.setValue(key as any, parsed[key]);
+          }
+        });
+      } catch (error) {
+        console.error('Error loading saved progress:', error);
+      }
+    }
+  }, []);
+
+  // Save progress to localStorage whenever formData changes
+  useEffect(() => {
+    if (Object.keys(formData).length > 0) {
+      localStorage.setItem('wizardProgress', JSON.stringify(formData));
+    }
+  }, [formData]);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -106,18 +140,63 @@ const WizardForm = () => {
     }
   };
 
-  const onSubmit = (data: FormValues) => {
-    console.log('Form submitted:', data);
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
 
-    toast({
-      title: "Formularz wysłany!",
-      description: "Dziękujemy za wypełnienie formularza. Skontaktujemy się wkrótce.",
-    });
+    try {
+      // Check if EmailJS is configured
+      if (EMAILJS_CONFIG.SERVICE_ID === 'YOUR_SERVICE_ID') {
+        console.warn('EmailJS not configured. Form data:', data);
+        toast({
+          title: "Tryb demonstracyjny",
+          description: "Formularz zapisany (EmailJS nie jest skonfigurowany). Skonfiguruj .env z wartościami z EmailJS.",
+        });
+      } else {
+        // Send email using EmailJS
+        const templateParams = {
+          to_email: 'kontakt@aluraf.pl',
+          from_name: data.email,
+          from_email: data.email,
+          phone: data.telefon,
+          location: data.lokalizacja,
+          dimensions: `${data.szerokość}m x ${data.głębokość}m x ${data.wysokość}m`,
+          roofing: data.zadaszenie,
+          color: data.kolor,
+          led_lighting: data.oświetlenieLED,
+          side_walls: data.ścianyTarasu,
+          notes: data.uwagi || 'Brak uwag',
+          subject: 'Nowa wycena z formularza na stronie',
+        };
 
-    // Reset form after submission
-    form.reset();
-    setFormData({});
-    setCurrentStep(1);
+        await emailjs.send(
+          EMAILJS_CONFIG.SERVICE_ID,
+          EMAILJS_CONFIG.TEMPLATE_ID_WIZARD,
+          templateParams
+        );
+
+        toast({
+          title: "Formularz wysłany!",
+          description: "Dziękujemy za wypełnienie formularza. Skontaktujemy się wkrótce.",
+        });
+      }
+
+      // Clear saved progress and reset form
+      localStorage.removeItem('wizardProgress');
+      form.reset();
+      setFormData({});
+      setCurrentStep(1);
+
+    } catch (error) {
+      console.error('Error sending email:', error);
+
+      toast({
+        variant: "destructive",
+        title: "Błąd wysyłania",
+        description: "Nie udało się wysłać formularza. Spróbuj ponownie lub zadzwoń do nas.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -189,9 +268,20 @@ const WizardForm = () => {
             ) : (
               <button
                 type="submit"
-                className="flex items-center gap-2 px-6 py-3 bg-aluraf-red text-white rounded-md hover:bg-red-700 hover:shadow-lg transition-all duration-300 font-medium"
+                disabled={isSubmitting}
+                className="flex items-center gap-2 px-6 py-3 bg-aluraf-red text-white rounded-md hover:bg-red-700 hover:shadow-lg transition-all duration-300 font-medium disabled:opacity-75 disabled:cursor-not-allowed"
               >
-                Wyślij formularz
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Wysyłanie...
+                  </>
+                ) : (
+                  'Wyślij formularz'
+                )}
               </button>
             )}
           </div>

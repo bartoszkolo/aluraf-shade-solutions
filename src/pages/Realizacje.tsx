@@ -93,16 +93,17 @@ const Realizacje = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredItems.slice(0, 3).map((item) => (
-              <div 
-                key={item.id} 
-                className={`bg-white rounded-lg shadow-md overflow-hidden cursor-pointer ${animations.card}`}
+              <div
+                key={item.id}
+                className={`premium-card premium-card-glow overflow-hidden cursor-pointer ${animations.card}`}
                 onClick={() => openModal(item)}
               >
                 <div className="relative h-64">
-                  <img 
-                    src={item.image} 
+                  <img
+                    src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
                   />
                   <div className="absolute top-4 right-4 bg-aluraf-red text-white px-3 py-1 rounded-full text-sm">
                     Wyróżniony
@@ -157,14 +158,15 @@ const Realizacje = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.3 }}
-                className={`bg-white rounded-lg shadow-md overflow-hidden cursor-pointer ${animations.card}`}
+                className={`premium-card premium-card-glow overflow-hidden cursor-pointer ${animations.card}`}
                 onClick={() => openModal(item)}
               >
                 <div className="relative h-64">
-                  <img 
-                    src={item.image} 
+                  <img
+                    src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
                   />
                   {item.featured && (
                     <div className="absolute top-4 right-4 bg-aluraf-red text-white px-3 py-1 rounded-full text-sm">

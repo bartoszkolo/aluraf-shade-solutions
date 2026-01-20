@@ -44,7 +44,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-size: 15px; /* Reduced from default 16px for more compact typography */
+    font-size: 16px; /* Optimal readability for all age groups */
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
@@ -176,5 +176,75 @@
     @apply transition-all duration-300;
     @apply hover:bg-white hover:text-black hover:gap-4;
     letter-spacing: 0.05em;
+  }
+
+  /* Glassmorphism Effects */
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+
+  .glass-card-dark {
+    @apply bg-aluraf-black/80 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+
+  /* Premium Gradient Overlays */
+  .gradient-overlay {
+    @apply absolute inset-0 bg-gradient-to-br from-aluraf-red/20 via-transparent to-transparent;
+  }
+
+  .gradient-overlay-dark {
+    @apply absolute inset-0 bg-gradient-to-t from-aluraf-black/80 via-aluraf-black/40 to-transparent;
+  }
+
+  .gradient-overlay-hero {
+    @apply absolute inset-0 bg-gradient-to-r from-aluraf-black/70 via-aluraf-black/50 to-transparent;
+  }
+
+  /* Premium Card Hover Effects */
+  .premium-card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300;
+    @apply hover:-translate-y-1 hover:border-aluraf-red/20;
+  }
+
+  .premium-card-glow {
+    @apply relative overflow-hidden;
+  }
+
+  .premium-card-glow::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-aluraf-red/0 via-aluraf-red/5 to-aluraf-red/0;
+    @apply opacity-0 transition-opacity duration-300;
+    transform: translateX(-100%);
+  }
+
+  .premium-card-glow:hover::before {
+    @apply opacity-100;
+    animation: shimmer-glow 1.5s infinite;
+  }
+
+  @keyframes shimmer-glow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* Premium Image Container */
+  .image-container-premium {
+    @apply relative overflow-hidden rounded-lg;
+    @apply after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-black/50 after:to-transparent after:opacity-0;
+    @apply hover:after:opacity-100 after:transition-opacity after:duration-300;
+  }
+
+  /* Premium Badge */
+  .badge-premium {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+    @apply bg-aluraf-red/10 text-aluraf-red;
+    @apply border border-aluraf-red/20;
+  }
+
+  /* Premium Stat Card */
+  .stat-card {
+    @apply bg-white rounded-xl shadow-md p-6 text-center;
+    @apply hover:shadow-lg hover:-translate-y-1 transition-all duration-300;
+    @apply border border-gray-100 hover:border-aluraf-red/30;
   }
 }

@@ -16,7 +16,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-black shadow-md sticky top-0 z-50">
+    <nav className="bg-aluraf-black shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo */}
@@ -48,8 +48,8 @@ const NavBar = () => {
               >
                 Oferta <ChevronDown className="ml-1 h-4 w-4" />
               </button>
-              <div 
-                className={`absolute ${dropdownOpen ? 'block' : 'hidden'} group-hover:block bg-black shadow-lg rounded-md mt-2 z-10 min-w-[250px]`}
+              <div
+                className={`absolute ${dropdownOpen ? 'block' : 'hidden'} group-hover:block bg-aluraf-black shadow-lg rounded-md mt-2 z-10 min-w-[250px]`}
                 onMouseEnter={() => setDropdownOpen(true)}
                 onMouseLeave={() => setDropdownOpen(false)}
               >
@@ -92,7 +92,7 @@ const NavBar = () => {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-black pb-4 px-4">
+        <div className="md:hidden bg-aluraf-black pb-4 px-4">
           <div className="space-y-2 pt-2">
             <Link to="/" className={isActive('/') ? "navbar-link-active block" : "navbar-link block"}>
               Home

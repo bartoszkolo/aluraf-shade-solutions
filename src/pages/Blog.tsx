@@ -115,12 +115,13 @@ const Blog = () => {
             {filteredPosts.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {filteredPosts.map((post) => (
-                  <article key={post.id} className={`bg-white rounded-lg shadow-md overflow-hidden ${animations.card}`}>
+                  <article key={post.id} className={`premium-card premium-card-glow overflow-hidden ${animations.card}`}>
                     <Link to={`/blog/${post.slug}`}>
-                      <img 
-                        src={post.image} 
-                        alt={post.title} 
+                      <img
+                        src={post.image}
+                        alt={post.title}
                         className="w-full h-48 object-cover"
+                        loading="lazy"
                       />
                     </Link>
                     <div className="p-6">

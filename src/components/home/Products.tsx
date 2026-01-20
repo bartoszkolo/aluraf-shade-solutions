@@ -37,12 +37,13 @@ const Products = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product) => (
-            <div key={product.id} className="bg-white rounded-lg overflow-hidden shadow-lg group">
+            <div key={product.id} className="premium-card premium-card-glow overflow-hidden shadow-lg group">
               <div className="relative h-64">
-                <img 
-                  src={product.image} 
-                  alt={product.title} 
+                <img
+                  src={product.image}
+                  alt={product.title}
                   className="product-card-image"
+                  loading="lazy"
                 />
                 <div className="product-card-overlay"></div>
               </div>

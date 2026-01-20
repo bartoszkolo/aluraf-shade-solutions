@@ -23,7 +23,7 @@ const Contact = () => {
           {/* Phone Card 1 */}
           <a
             href="tel:+48698368994"
-            className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-aluraf-red"
+            className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-aluraf-red"
           >
             <div className="flex flex-col items-center text-center">
               <div className="w-12 h-12 bg-aluraf-red/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-aluraf-red transition-colors duration-300">
@@ -44,7 +44,7 @@ const Contact = () => {
           {/* Phone Card 2 */}
           <a
             href="tel:+48698732854"
-            className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-aluraf-red"
+            className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-aluraf-red"
           >
             <div className="flex flex-col items-center text-center">
               <div className="w-12 h-12 bg-aluraf-red/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-aluraf-red transition-colors duration-300">
@@ -65,7 +65,7 @@ const Contact = () => {
           {/* Email Card */}
           <a
             href="mailto:kontakt@aluraf.pl"
-            className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-aluraf-red"
+            className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-aluraf-red"
           >
             <div className="flex flex-col items-center text-center">
               <div className="w-12 h-12 bg-aluraf-red/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-aluraf-red transition-colors duration-300">
@@ -84,7 +84,7 @@ const Contact = () => {
           </a>
 
           {/* Location Card */}
-          <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-200">
+          <div className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200">
             <div className="flex flex-col items-center text-center">
               <div className="w-12 h-12 bg-aluraf-red/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-aluraf-red transition-colors duration-300">
                 <MapPin className="w-6 h-6 text-aluraf-red group-hover:text-white transition-colors duration-300" />
@@ -103,7 +103,7 @@ const Contact = () => {
         </div>
 
         {/* Working Hours Bar */}
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-12">
+        <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 mb-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">

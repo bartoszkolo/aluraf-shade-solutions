@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import Blog from './pages/Blog';
 import Realizacje from './pages/Realizacje';
 import ProductPage from './pages/ProductPage';
+import ScrollToTop from '@/components/ui/scroll-to-top';
 
 const queryClient = new QueryClient();
 
@@ -24,7 +25,8 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-        <Routes>
+          <ScrollToTop />
+          <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/o-nas" element={<ONas />} />
           <Route path="/kontakt" element={<Kontakt />} />

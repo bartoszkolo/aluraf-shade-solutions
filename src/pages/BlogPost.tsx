@@ -93,10 +93,11 @@ const BlogPost = () => {
                   {relatedPosts.map((relatedPost) => (
                     <div key={relatedPost.id} className={`group ${animations.card}`}>
                       <Link to={`/blog/${relatedPost.slug}`} className="block">
-                        <img 
-                          src={relatedPost.image} 
+                        <img
+                          src={relatedPost.image}
                           alt={relatedPost.title}
                           className="w-full h-32 object-cover rounded-md mb-2"
+                          loading="lazy"
                         />
                         <h4 className="font-semibold group-hover:text-aluraf-red transition-colors">
                           {relatedPost.title}

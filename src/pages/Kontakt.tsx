@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import { Phone, Mail, MapPin, Clock, Send, Check, AlertCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -7,6 +7,8 @@ import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
 import { animations } from '@/lib/animations';
 import { BackToTop } from '@/components/ui/back-to-top';
+import { initEmailJS, EMAILJS_CONFIG } from '@/lib/emailjs';
+import emailjs from '@emailjs/browser';
 
 // Form validation schema
 const contactFormSchema = z.object({
@@ -23,7 +25,12 @@ const Kontakt = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  
+
+  // Initialize EmailJS
+  useEffect(() => {
+    initEmailJS();
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -42,30 +49,53 @@ const Kontakt = () => {
 
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
-    
+
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Email would be sent here in a real implementation
-      console.log('Form data submitted:', data);
-      
-      toast({
-        title: "Wiadomość wysłana!",
-        description: "Dziękujemy za kontakt. Odpowiemy najszybciej jak to możliwe.",
-      });
-      
+      // Check if EmailJS is configured
+      if (EMAILJS_CONFIG.SERVICE_ID === 'YOUR_SERVICE_ID') {
+        console.warn('EmailJS not configured. Form data:', data);
+        toast({
+          title: "Tryb demonstracyjny",
+          description: "Formularz zapisany (EmailJS nie jest skonfigurowany). Skonfiguruj .env z wartościami z EmailJS.",
+        });
+      } else {
+        // Send email using EmailJS
+        const templateParams = {
+          to_email: 'kontakt@aluraf.pl',
+          from_name: data.name,
+          from_email: data.email,
+          phone: data.phone || 'Nie podano',
+          subject: data.subject,
+          message: data.message,
+          reply_to: data.email,
+        };
+
+        await emailjs.send(
+          EMAILJS_CONFIG.SERVICE_ID,
+          EMAILJS_CONFIG.TEMPLATE_ID_CONTACT,
+          templateParams
+        );
+
+        toast({
+          title: "Wiadomość wysłana!",
+          description: "Dziękujemy za kontakt. Odpowiemy najszybciej jak to możliwe.",
+        });
+      }
+
       setFormStatus('success');
       reset();
+
+      // Reset form status after 5 seconds
+      setTimeout(() => setFormStatus('idle'), 5000);
     } catch (error) {
-      console.error('Error submitting form:', error);
-      
+      console.error('Error sending email:', error);
+
       toast({
         title: "Wystąpił błąd",
         description: "Nie udało się wysłać wiadomości. Prosimy spróbować ponownie.",
         variant: "destructive",
       });
-      
+
       setFormStatus('error');
     } finally {
       setIsSubmitting(false);

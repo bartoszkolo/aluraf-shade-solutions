@@ -55,7 +55,7 @@ export default {
 				},
 				aluraf: {
 					red: '#e30613',
-					black: '#000000',
+					black: '#1a1a1a',
 					gray: '#f8f8f8',
 					darkgray: '#333333'
 				}

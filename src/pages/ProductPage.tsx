@@ -104,15 +104,16 @@ const ProductPage = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {relatedProjects.map((item) => (
-                <div 
-                  key={item.id} 
-                  className={`bg-white rounded-lg shadow-md overflow-hidden cursor-pointer ${animations.card}`}
+                <div
+                  key={item.id}
+                  className={`premium-card premium-card-glow overflow-hidden cursor-pointer ${animations.card}`}
                   onClick={() => openModal(item)}
                 >
-                  <img 
-                    src={item.image} 
+                  <img
+                    src={item.image}
                     alt={item.title}
                     className="w-full h-48 object-cover transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
                   />
                   <div className="p-4">
                     <h4 className="text-lg font-semibold mb-1 truncate">{item.title}</h4>
