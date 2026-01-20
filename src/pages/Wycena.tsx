@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/layout/Layout';
-import WycenaForm from '../components/wycena/WycenaForm';
+import WizardForm from '../components/wycena/WizardForm';
 import { animations } from '@/lib/animations';
 import HelmetWrapper from '../components/seo/HelmetWrapper';
 
@@ -40,11 +40,11 @@ const Wycena = () => {
               Szybka i bezpłatna wycena
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Wypełnij poniższy formularz, a nasz zespół przygotuje dla Ciebie indywidualną wycenę.
-              Skontaktujemy się z Tobą najszybciej jak to możliwe.
+              Wypełnij formularz krok po kroku, a nasz zespół przygotuje dla Ciebie indywidualną wycenę.
+              Skontaktujemy się z Tobą w ciągu 24 godzin.
             </p>
           </div>
-          <WycenaForm />
+          <WizardForm />
         </div>
       </div>
     </Layout>
