@@ -25,7 +25,7 @@ const NavBar = () => {
               <img
                 src="/lovable-uploads/0748ff93-80ad-4145-a425-eff5345ea9ac.png"
                 alt="Aluraf Logo"
-                className="h-10 w-auto"
+                className="h-14 w-auto"
               />
             </Link>
           </div>
