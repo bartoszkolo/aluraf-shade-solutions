@@ -69,15 +69,46 @@
   }
   
   .navbar-link {
-    @apply text-white hover:text-aluraf-red px-3 py-2 rounded-md text-sm font-medium transition-colors;
+    @apply text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative;
+  }
+
+  .navbar-link::after {
+    content: '';
+    @apply absolute bottom-1 left-0 w-0 h-0.5 bg-aluraf-red transition-all duration-300 ease-out;
+  }
+
+  .navbar-link:hover::after {
+    @apply w-full;
+  }
+
+  .navbar-link:hover {
+    letter-spacing: 0.05em;
   }
 
   .navbar-link-active {
-    @apply text-aluraf-red hover:text-aluraf-red px-3 py-2 rounded-md text-sm font-medium;
+    @apply text-aluraf-red px-3 py-2 rounded-md text-sm font-medium relative;
+  }
+
+  .navbar-link-active::after {
+    content: '';
+    @apply absolute bottom-1 left-0 w-full h-0.5 bg-aluraf-red;
   }
 
   .dropdown-link {
-    @apply block px-4 py-2 text-white hover:text-aluraf-red text-sm transition-colors;
+    @apply block px-4 py-2 text-white hover:text-aluraf-red text-sm transition-all duration-300 relative;
+  }
+
+  .dropdown-link::before {
+    content: '';
+    @apply absolute left-2 top-1/2 -translate-y-1/2 w-0 h-0.5 bg-aluraf-red transition-all duration-300 ease-out;
+  }
+
+  .dropdown-link:hover::before {
+    @apply w-2;
+  }
+
+  .dropdown-link:hover {
+    @apply pl-5;
   }
 
   .contact-number {
@@ -93,7 +124,20 @@
   }
 
   .cta-button {
-    @apply bg-aluraf-red text-white px-5 py-2 rounded-md hover:bg-aluraf-red/90 transition-colors text-sm font-semibold;
+    @apply bg-aluraf-red text-white px-5 py-2 rounded-md text-sm font-semibold transition-all duration-300 relative overflow-hidden;
+  }
+
+  .cta-button::before {
+    content: '';
+    @apply absolute inset-0 bg-white opacity-0 transition-opacity duration-300;
+  }
+
+  .cta-button:hover::before {
+    @apply opacity-10;
+  }
+
+  .cta-button:hover {
+    @apply shadow-lg transform -translate-y-0.5;
   }
 
   .secondary-button {
