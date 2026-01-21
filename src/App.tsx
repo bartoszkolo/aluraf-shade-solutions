@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import Blog from './pages/Blog';
 import Realizacje from './pages/Realizacje';
 import ProductPage from './pages/ProductPage';
+import PolitykaPrywatnosci from './pages/PolitykaPrywatnosci';
 import ScrollToTop from '@/components/ui/scroll-to-top';
 
 const queryClient = new QueryClient();
@@ -39,7 +40,7 @@ const App = () => (
 
           {/* Additional routes */}
           <Route path="/realizacje" element={<Realizacje />} />
-          <Route path="/polityka-prywatnosci" element={<NotFound />} />
+          <Route path="/polityka-prywatnosci" element={<PolitykaPrywatnosci />} />
           <Route path="/jak-dojechac" element={<NotFound />} />
           <Route path="/rezerwacja" element={<NotFound />} />
           <Route path="/blog" element={<Blog />} />

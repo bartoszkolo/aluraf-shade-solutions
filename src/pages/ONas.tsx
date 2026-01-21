@@ -8,7 +8,7 @@ const ONas = () => {
   return (
     <Layout>
       {/* Hero Section with Background Image */}
-      <div className="relative h-[400px]">
+      <div className="relative h-[140px]">
         <div className="absolute inset-0">
           <div className="w-full h-full bg-gray-800">
             <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1609349093648-53df455ea814?q=80')] bg-cover bg-center"></div>
@@ -16,8 +16,8 @@ const ONas = () => {
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         </div>
         <div className="relative h-full flex flex-col items-center justify-center text-center">
-          <h1 className="text-white text-6xl font-bold mb-4 font-display">O Nas</h1>
-          <p className="text-white text-xl">Poznaj naszą historię i wartości</p>
+          <h1 className="text-white text-3xl font-bold mb-1 font-display">O Nas</h1>
+          <p className="text-white text-sm">Poznaj naszą historię i wartości</p>
         </div>
       </div>
 

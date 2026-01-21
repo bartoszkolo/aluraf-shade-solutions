@@ -48,6 +48,11 @@ export const ROUTE_METADATA = {
     description: 'Przeczytaj naszego bloga. Porady dotyczące zadaszeń tarasowych, pergoli aluminiowych i ogrodów zimowych. Wiedza z pierwszej ręki.',
     keywords: 'blog, porady, pergole, zadaszenia, wiedza, artykuły'
   },
+  '/polityka-prywatnosci': {
+    title: 'Polityka Prywatności - Aluraf | Ochrona Danych Osobowych',
+    description: 'Polityka prywatności Aluraf. Dowiedz się jak przetwarzamy Twoje dane, jakich plików cookies używamy i jakie masz prawa związane z RODO.',
+    keywords: 'polityka prywatności, RODO, ochrona danych, cookies, dane osobowe, GDPR'
+  },
 };
 
 export interface RouteMetadata {
